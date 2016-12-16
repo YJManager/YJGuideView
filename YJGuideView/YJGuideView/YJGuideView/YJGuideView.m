@@ -7,6 +7,8 @@
 //
 
 #import "YJGuideView.h"
+#import <CoreText/CoreText.h>
+#import <CoreImage/CoreImage.h>
 
 #define UP_ARROW_IMAGE ([UIImage imageNamed:@"fx_my_attention_guide_arrow"])
 #define DOWN_ARROW_IMAGE ([UIImage imageNamed:@"fx_guide_arrow_down"])
@@ -69,7 +71,7 @@
         [self performSelector:@selector(setNeedsDisplay) withObject:nil afterDelay:0.12f];
     }else{
         CGRect frame = [self convertRect:self.bounds toView: self.superview];
-        UIImage *fullImage = [self imageFromView:self.superview];
+        UIImage *fullImage = [self _getImageFromView:self.superview];
         CGFloat scale = UIScreen.mainScreen.scale;
         UIImage *image = [self imageFromImage:fullImage rect:CGRectMake(frame.origin.x*scale, frame.origin.y*scale, frame.size.width*scale, frame.size.height*scale)];
         [image drawInRect:self.bounds];
@@ -309,8 +311,8 @@
 #pragma mark - Lazy
 
 #pragma mark - Setting_Support
-/** 从View截取生成Image */
--(UIImage*)imageFromView:(UIView*)view{
+/** 从view截取生成Image */
+- (UIImage *)_getImageFromView:(UIView *)view{
     UIGraphicsBeginImageContextWithOptions(view.bounds.size, view.opaque, 0.0);
     [view.layer renderInContext:UIGraphicsGetCurrentContext()];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
