@@ -184,15 +184,15 @@
         }
         else//下面
         {
-            [markImageView setFrame:CGRectMake(showLocationRect.origin.x+showLocationRect.size.width-markImageView.frame.size.width, showLocationRect.origin.y+showLocationRect.size.height, markImageView.frame.size.width, markImageView.frame.size.height)];
-            [markImageView setImage:UPIMAGE];
-            [markImageView setTransform:CGAffineTransformIdentity];
-            [self addSubview:markImageView];
-            CGFloat width = showLocationRect.origin.x+showLocationRect.size.width-markImageView.frame.size.width;
-            CGFloat height = self.bounds.size.height-showLocationRect.origin.y-showLocationRect.size.height-markImageView.frame.size.height;
-            CGSize size = [markTextView sizeThatFits:CGSizeMake(width, height)];
-            [markTextView setFrame:CGRectMake(markImageView.frame.origin.x-size.width, markImageView.frame.origin.y+markImageView.frame.size.height-markTextView.font.pointSize, size.width, size.height)];
-            [self addSubview:markTextView];
+            [self.markImageView setFrame:CGRectMake(showLocationRect.origin.x+showLocationRect.size.width-self.markImageView.frame.size.width, showLocationRect.origin.y+showLocationRect.size.height, self.markImageView.frame.size.width, self.markImageView.frame.size.height)];
+            [self.markImageView setImage:UP_ARROW_IMAGE];
+            [self.markImageView setTransform:CGAffineTransformIdentity];
+            [self addSubview:self.markImageView];
+            CGFloat width = showLocationRect.origin.x+showLocationRect.size.width-self.markImageView.frame.size.width;
+            CGFloat height = self.bounds.size.height-showLocationRect.origin.y-showLocationRect.size.height-self.markImageView.frame.size.height;
+            CGSize size = [self.markTextView sizeThatFits:CGSizeMake(width, height)];
+            [self.markTextView setFrame:CGRectMake(self.markImageView.frame.origin.x-size.width, self.markImageView.frame.origin.y+self.markImageView.frame.size.height-self.markTextView.font.pointSize, size.width, size.height)];
+            [self addSubview:self.markTextView];
         }
     }
     else if (markCenter.x<=centerX&&markCenter.y>=centerY)//左下
@@ -201,27 +201,27 @@
         CGFloat up = (self.bounds.size.width-showLocationRect.origin.x)*(showLocationRect.origin.y);
         if (right>=up)//右侧
         {
-            [markImageView setFrame:CGRectMake(showLocationRect.origin.x+showLocationRect.size.width, showLocationRect.origin.y+showLocationRect.size.height-markImageView.frame.size.height, markImageView.frame.size.width, markImageView.frame.size.height)];
-            [markImageView setImage:DOWNIMAGE];
-            [markImageView setTransform:CGAffineTransformRotate(CGAffineTransformIdentity, -M_PI_4)];
-            [self addSubview:markImageView];
-            CGFloat width = self.bounds.size.width-showLocationRect.origin.x-showLocationRect.size.width-markImageView.frame.size.width;
-            CGFloat height = showLocationRect.origin.y+showLocationRect.size.height-markImageView.frame.size.height;
-            CGSize size = [markTextView sizeThatFits:CGSizeMake(width, height)];
-            [markTextView setFrame:CGRectMake(markImageView.frame.origin.x+markImageView.frame.size.width-markTextView.font.pointSize, markImageView.frame.origin.y-size.height, size.width, size.height)];
-            [self addSubview:markTextView];
+            [self.markImageView setFrame:CGRectMake(showLocationRect.origin.x+showLocationRect.size.width, showLocationRect.origin.y+showLocationRect.size.height-self.markImageView.frame.size.height, self.markImageView.frame.size.width, self.markImageView.frame.size.height)];
+            [self.markImageView setImage:DOWN_ARROW_IMAGE];
+            [self.markImageView setTransform:CGAffineTransformRotate(CGAffineTransformIdentity, -M_PI_4)];
+            [self addSubview:self.markImageView];
+            CGFloat width = self.bounds.size.width-showLocationRect.origin.x-showLocationRect.size.width-self.markImageView.frame.size.width;
+            CGFloat height = showLocationRect.origin.y+showLocationRect.size.height-self.markImageView.frame.size.height;
+            CGSize size = [self.markTextView sizeThatFits:CGSizeMake(width, height)];
+            [self.markTextView setFrame:CGRectMake(self.markImageView.frame.origin.x+self.markImageView.frame.size.width-self.markTextView.font.pointSize, self.markImageView.frame.origin.y-size.height, size.width, size.height)];
+            [self addSubview:self.markTextView];
         }
         else//上面
         {
-            [markImageView setFrame:CGRectMake(showLocationRect.origin.x, showLocationRect.origin.y-markImageView.frame.size.height, markImageView.frame.size.width, markImageView.frame.size.height)];
-            [markImageView setImage:UPIMAGE];
-            [markImageView setTransform:CGAffineTransformRotate(CGAffineTransformIdentity, M_PI)];
-            [self addSubview:markImageView];
-            CGFloat width = self.bounds.size.width-showLocationRect.origin.x-markImageView.frame.size.width;
-            CGFloat height = showLocationRect.origin.y-markImageView.frame.size.height;
-            CGSize size = [markTextView sizeThatFits:CGSizeMake(width, height)];
-            [markTextView setFrame:CGRectMake(markImageView.frame.origin.x+markImageView.frame.size.width, markImageView.frame.origin.y-size.height+markTextView.font.pointSize, size.width, size.height)];
-            [self addSubview:markTextView];
+            [self.markImageView setFrame:CGRectMake(showLocationRect.origin.x, showLocationRect.origin.y-self.markImageView.frame.size.height, self.markImageView.frame.size.width, self.markImageView.frame.size.height)];
+            [self.markImageView setImage:UP_ARROW_IMAGE];
+            [self.markImageView setTransform:CGAffineTransformRotate(CGAffineTransformIdentity, M_PI)];
+            [self addSubview:self.markImageView];
+            CGFloat width = self.bounds.size.width-showLocationRect.origin.x-self.markImageView.frame.size.width;
+            CGFloat height = showLocationRect.origin.y-self.markImageView.frame.size.height;
+            CGSize size = [self.markTextView sizeThatFits:CGSizeMake(width, height)];
+            [self.markTextView setFrame:CGRectMake(self.markImageView.frame.origin.x+self.markImageView.frame.size.width, self.markImageView.frame.origin.y-size.height+self.markTextView.font.pointSize, size.width, size.height)];
+            [self addSubview:self.markTextView];
         }
     }
     else if (markCenter.x>=centerX&&markCenter.y>=centerY)//右下
@@ -230,27 +230,27 @@
         CGFloat up = (showLocationRect.origin.x+showLocationRect.size.width)*(showLocationRect.origin.y);
         if (left>=up)//左侧
         {
-            [markImageView setFrame:CGRectMake(showLocationRect.origin.x-markImageView.frame.size.width, showLocationRect.origin.y+showLocationRect.size.height-markImageView.frame.size.height, markImageView.frame.size.width, markImageView.frame.size.height)];
-            [markImageView setImage:UPIMAGE];
-            [markImageView setTransform:CGAffineTransformRotate(CGAffineTransformIdentity, -M_PI_4)];
-            [self addSubview:markImageView];
-            CGFloat width = showLocationRect.origin.x-markImageView.frame.size.width;
-            CGFloat height = showLocationRect.origin.y+showLocationRect.size.height-markImageView.frame.size.height;
-            CGSize size = [markTextView sizeThatFits:CGSizeMake(width, height)];
-            [markTextView setFrame:CGRectMake(markImageView.frame.origin.x-size.width+markTextView.font.pointSize, markImageView.frame.origin.y-size.height, size.width, size.height)];
-            [self addSubview:markTextView];
+            [self.markImageView setFrame:CGRectMake(showLocationRect.origin.x-self.markImageView.frame.size.width, showLocationRect.origin.y+showLocationRect.size.height-self.markImageView.frame.size.height, self.markImageView.frame.size.width, self.markImageView.frame.size.height)];
+            [self.markImageView setImage:UP_ARROW_IMAGE];
+            [self.markImageView setTransform:CGAffineTransformRotate(CGAffineTransformIdentity, -M_PI_4)];
+            [self addSubview:self.markImageView];
+            CGFloat width = showLocationRect.origin.x-self.markImageView.frame.size.width;
+            CGFloat height = showLocationRect.origin.y+showLocationRect.size.height-self.markImageView.frame.size.height;
+            CGSize size = [self.markTextView sizeThatFits:CGSizeMake(width, height)];
+            [self.markTextView setFrame:CGRectMake(self.markImageView.frame.origin.x-size.width+self.markTextView.font.pointSize, self.markImageView.frame.origin.y-size.height, size.width, size.height)];
+            [self addSubview:self.markTextView];
         }
         else//上面
         {
-            [markImageView setFrame:CGRectMake(showLocationRect.origin.x+showLocationRect.size.width-markImageView.frame.size.width, showLocationRect.origin.y-markImageView.frame.size.height, markImageView.frame.size.width, markImageView.frame.size.height)];
-            [markImageView setImage:DOWNIMAGE];
-            [markImageView setTransform:CGAffineTransformIdentity];
-            [self addSubview:markImageView];
-            CGFloat width = showLocationRect.origin.x+showLocationRect.size.width-markImageView.frame.size.width;
-            CGFloat height = showLocationRect.origin.y-markImageView.frame.size.height;
-            CGSize size = [markTextView sizeThatFits:CGSizeMake(width, height)];
-            [markTextView setFrame:CGRectMake(markImageView.frame.origin.x-size.width, markImageView.frame.origin.y-size.height+markTextView.font.pointSize, size.width, size.height)];
-            [self addSubview:markTextView];
+            [self.markImageView setFrame:CGRectMake(showLocationRect.origin.x+showLocationRect.size.width-self.markImageView.frame.size.width, showLocationRect.origin.y-self.markImageView.frame.size.height, self.markImageView.frame.size.width, self.markImageView.frame.size.height)];
+            [self.markImageView setImage:DOWN_ARROW_IMAGE];
+            [self.markImageView setTransform:CGAffineTransformIdentity];
+            [self addSubview:self.markImageView];
+            CGFloat width = showLocationRect.origin.x+showLocationRect.size.width-self.markImageView.frame.size.width;
+            CGFloat height = showLocationRect.origin.y-self.markImageView.frame.size.height;
+            CGSize size = [self.markTextView sizeThatFits:CGSizeMake(width, height)];
+            [self.markTextView setFrame:CGRectMake(self.markImageView.frame.origin.x-size.width, self.markImageView.frame.origin.y-size.height+self.markTextView.font.pointSize, size.width, size.height)];
+            [self addSubview:self.markTextView];
         }
     }
 }
@@ -261,21 +261,21 @@
     {
         self.showRect = self.bounds;
         self.fullShow = YES;
-        self.guideColor = [UIColor colorWithRed: 0.0 green: 0.0 blue: 0.0 alpha: 0.68];
-        isClean = NO;
-        self.showMark = YES;
-        self.markText = @"说明性文字";
-        self.model = GuideViewCleanModeOval;
-        markImageView = [[UIImageView alloc]initWithImage:UPIMAGE];
-        [markImageView setFrame:CGRectMake(0, 0, 70, 70)];
-        [markImageView setContentMode:UIViewContentModeScaleAspectFit];
-        markTextView = [[UITextView alloc]initWithFrame:CGRectZero];
-        [markTextView setEditable:NO];
-        [markTextView setTextColor:[UIColor whiteColor]];
-        [markTextView setFont:[UIFont systemFontOfSize:16.0f]];
-        [markTextView setScrollEnabled:NO];
-        [markTextView setText:self.markText];
-        [markTextView setBackgroundColor:[UIColor clearColor]];
+        self.guideBgColor = [UIColor colorWithRed: 0.0 green: 0.0 blue: 0.0 alpha: 0.68];
+        self.isClean = NO;
+        self.markShow = YES;
+        self.markString = @"说明性文字";
+        self.showType = YJGuideViewAnchorOval;
+        self.markImageView = [[UIImageView alloc]initWithImage:UP_ARROW_IMAGE];
+        [self.markImageView setFrame:CGRectMake(0, 0, 70, 70)];
+        [self.markImageView setContentMode:UIViewContentModeScaleAspectFit];
+        self.markTextView = [[UITextView alloc]initWithFrame:CGRectZero];
+        [self.markTextView setEditable:NO];
+        [self.markTextView setTextColor:[UIColor whiteColor]];
+        [self.markTextView setFont:[UIFont systemFontOfSize:16.0f]];
+        [self.markTextView setScrollEnabled:NO];
+        [self.markTextView setText:self.markString];
+        [self.markTextView setBackgroundColor:[UIColor clearColor]];
     }
     return self;
 }
@@ -284,7 +284,7 @@
     CGPoint center = CGPointMake(CGRectGetMidX(rect), CGRectGetMidY(rect));
     CGFloat width = rect.size.width;
     CGFloat height = rect.size.height;
-    CGRect newRect = CGRectMake(center.x - width * 0.5 - DEFAULTCORNERRADIUS, center.y - height * 0.5 - DEFAULTCORNERRADIUS, width + DEFAULTCORNERRADIUS * 2.0, height + DEFAULTCORNERRADIUS * 2.0);
+    CGRect newRect = CGRectMake(center.x - width * 0.5 - DEFAULT_CONRNERRADIUS, center.y - height * 0.5 - DEFAULT_CONRNERRADIUS, width + DEFAULT_CONRNERRADIUS * 2.0, height + DEFAULT_CONRNERRADIUS * 2.0);
     
     return newRect;
 }
