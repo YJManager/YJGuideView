@@ -285,10 +285,10 @@
 
 -(CGFloat)ovalDrawScale
 {
-    CGFloat a = MAX(self.showRect.size.width, self.showRect.size.height);
-    CGFloat b = MIN(self.showRect.size.width, self.showRect.size.height);
-    CGFloat bigger = (b + sqrt(4.0 * a * a + b * b) - 2 * a)/2.0;
-    CGFloat scale = 1.0 + bigger / a;
+    CGFloat max = MAX(self.showRect.size.width, self.showRect.size.height);
+    CGFloat min = MIN(self.showRect.size.width, self.showRect.size.height);
+    CGFloat bigger = (min + sqrt(4.0 * max * max + min * min) - 2 * max)/2.0;
+    CGFloat scale = 1.0 + bigger / max;
     return scale;
 }
 
