@@ -21,10 +21,17 @@
     YJGuideView *view = [[YJGuideView alloc] init];
     
     CGRect frame = CGRectMake(100, 100, 100, 100);
-    UILabel *labelInit = [[UILabel alloc] initWithFrame:[view _ovalFrameScale:frame ratio:0.5]];
+    
+    UILabel *bgLabel = [[UILabel alloc] initWithFrame:frame];
+    bgLabel.font = [UIFont systemFontOfSize:13];
+    bgLabel.textAlignment = NSTextAlignmentLeft;
+    bgLabel.backgroundColor = [UIColor greenColor];
+    [self.view addSubview:bgLabel];
+
+    UILabel *labelInit = [[UILabel alloc] initWithFrame:[view scaleFrame:frame addBorderWidth:-5]];
     labelInit.font = [UIFont systemFontOfSize:15];
     labelInit.textAlignment = NSTextAlignmentLeft;
-    labelInit.backgroundColor = [UIColor redColor];
+    labelInit.backgroundColor = [[UIColor redColor] colorWithAlphaComponent:0.5];
     [self.view addSubview:labelInit];
     
     

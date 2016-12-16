@@ -23,7 +23,6 @@ typedef NS_ENUM(NSInteger, YJGuideViewAnchorType) {
 @property (nonatomic, assign, getter=isMarkShow) BOOL markShow; /**< 是否显示提示文本，默认不显示 */
 @property (nonatomic, copy) NSString *markString; /**< 提示文本内容 */
 
-
--(CGRect)_ovalFrameScale:(CGRect)rect ratio:(CGFloat)ratio;
+-(CGRect)scaleFrame:(CGRect)rect addBorderWidth:(CGFloat)borderWidth;
 
 @end

@@ -81,7 +81,7 @@
         {
             case YJGuideViewAnchorOval:
             {
-                UIBezierPath *showPath = [UIBezierPath bezierPathWithOvalInRect:self.fullShow?([self _ovalFrameScale:self.showRect ratio:[self ovalDrawScale]]):self.showRect];
+                UIBezierPath *showPath = [UIBezierPath bezierPathWithOvalInRect:self.fullShow?([self _scaleFrame:self.showRect ratio:[self ovalDrawScale]]):self.showRect];
                 [fullPath appendPath:[showPath bezierPathByReversingPath]];
             }
                 break;
@@ -93,7 +93,7 @@
                 break;
             default:
             {
-                UIBezierPath *showPath = [UIBezierPath bezierPathWithRect:self.fullShow?([self rectScale:self.showRect]):self.showRect];
+                UIBezierPath *showPath = [UIBezierPath bezierPathWithRect:self.fullShow?([self scaleFrame:self.showRect addBorderWidth:2]):self.showRect];
                 [fullPath appendPath:[showPath bezierPathByReversingPath]];
             }
                 break;
@@ -120,7 +120,7 @@
         {
             case YJGuideViewAnchorOval:
             {
-                showLocationRect = [self _ovalFrameScale:self.showRect ratio:[self ovalDrawScale]];
+                showLocationRect = [self _scaleFrame:self.showRect ratio:[self ovalDrawScale]];
             }
                 break;
             case YJGuideViewAnchorRoundRect:
@@ -130,7 +130,7 @@
                 break;
             default:
             {
-                showLocationRect = [self rectScale:self.showRect];
+                showLocationRect = [self scaleFrame:self.showRect addBorderWidth:2];
             }
                 break;
         }
@@ -290,15 +290,7 @@
     
     return newRect;
 }
--(CGRect)rectScale:(CGRect)rect
-{
-    CGPoint center = CGPointMake(CGRectGetMidX(rect), CGRectGetMidY(rect));
-    CGFloat width = rect.size.width;
-    CGFloat height = rect.size.height;
-    CGRect newRect = CGRectMake(center.x - width * 0.5 - 2.0, center.y - height * 0.5 - 2.0, width + 4.0, height + 4.0);
-    
-    return newRect;
-}
+
 -(CGFloat)ovalDrawScale
 {
     CGFloat a = MAX(self.showRect.size.width, self.showRect.size.height);
@@ -320,6 +312,7 @@
     return image;
 }
 
+/** 图中裁图 */
 - (UIImage *)_getImageFromImage:(UIImage *)image rect:(CGRect)rect{
     CGImageRef sourceImageRef = image.CGImage;
     CGImageRef newImageRef = CGImageCreateWithImageInRect(sourceImageRef, rect);
@@ -328,12 +321,24 @@
     return newImage;
 }
 
--(CGRect)_ovalFrameScale:(CGRect)rect ratio:(CGFloat)ratio{
+/** 根据 比例缩放 调整Frame */
+-(CGRect)_scaleFrame:(CGRect)rect ratio:(CGFloat)ratio{
     
     CGPoint center = CGPointMake(CGRectGetMidX(rect), CGRectGetMidY(rect));
     CGFloat width = rect.size.width;
     CGFloat height = rect.size.height;
     CGRect newRect = CGRectMake(center.x - width * ratio * 0.5, center.y - height * ratio * 0.5, width * ratio, height * ratio);
+    return newRect;
+}
+
+/** 根据 边缘宽度 调整Frame */
+-(CGRect)scaleFrame:(CGRect)rect addBorderWidth:(CGFloat)borderWidth{
+    
+    CGPoint center = CGPointMake(CGRectGetMidX(rect), CGRectGetMidY(rect));
+    CGFloat width = rect.size.width;
+    CGFloat height = rect.size.height;
+    CGRect newRect = CGRectMake(center.x - width * 0.5 - borderWidth, center.y - height * 0.5 - borderWidth, width + borderWidth * 2, height + borderWidth * 2);
+    
     return newRect;
 }
 
