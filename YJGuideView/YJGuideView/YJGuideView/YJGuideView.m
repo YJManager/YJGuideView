@@ -87,7 +87,7 @@
                 break;
             case YJGuideViewAnchorRoundRect:
             {
-                UIBezierPath *showPath = [UIBezierPath bezierPathWithRoundedRect:self.fullShow?([self roundRectScale:self.showRect]):self.showRect cornerRadius:DEFAULT_CONRNERRADIUS];
+                UIBezierPath *showPath = [UIBezierPath bezierPathWithRoundedRect:self.fullShow?([self scaleFrame:self.showRect addBorderWidth:DEFAULT_CONRNERRADIUS]):self.showRect cornerRadius:DEFAULT_CONRNERRADIUS];
                 [fullPath appendPath:[showPath bezierPathByReversingPath]];
             }
                 break;
@@ -125,7 +125,7 @@
                 break;
             case YJGuideViewAnchorRoundRect:
             {
-                showLocationRect = [self roundRectScale:self.showRect];
+                showLocationRect = [self scaleFrame:self.showRect addBorderWidth:DEFAULT_CONRNERRADIUS];
             }
                 break;
             default:
@@ -281,15 +281,7 @@
     }
     return self;
 }
--(CGRect)roundRectScale:(CGRect)rect
-{
-    CGPoint center = CGPointMake(CGRectGetMidX(rect), CGRectGetMidY(rect));
-    CGFloat width = rect.size.width;
-    CGFloat height = rect.size.height;
-    CGRect newRect = CGRectMake(center.x - width * 0.5 - DEFAULT_CONRNERRADIUS, center.y - height * 0.5 - DEFAULT_CONRNERRADIUS, width + DEFAULT_CONRNERRADIUS * 2.0, height + DEFAULT_CONRNERRADIUS * 2.0);
-    
-    return newRect;
-}
+
 
 -(CGFloat)ovalDrawScale
 {
@@ -332,15 +324,16 @@
 }
 
 /** 根据 边缘宽度 调整Frame */
--(CGRect)scaleFrame:(CGRect)rect addBorderWidth:(CGFloat)borderWidth{
+- (CGRect)scaleFrame:(CGRect)rect addBorderWidth:(CGFloat)borderWidth{
     
     CGPoint center = CGPointMake(CGRectGetMidX(rect), CGRectGetMidY(rect));
     CGFloat width = rect.size.width;
     CGFloat height = rect.size.height;
-    CGRect newRect = CGRectMake(center.x - width * 0.5 - borderWidth, center.y - height * 0.5 - borderWidth, width + borderWidth * 2, height + borderWidth * 2);
+    CGRect newRect = CGRectMake(center.x - width * 0.5 - borderWidth, center.y - height * 0.5 - borderWidth, width + borderWidth * 2.0, height + borderWidth * 2.0);
     
     return newRect;
 }
+
 
 
 
