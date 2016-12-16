@@ -13,6 +13,7 @@
 		63B8467F1E039AEE00947376 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63B8467D1E039AEE00947376 /* Main.storyboard */; };
 		63B846811E039AEE00947376 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63B846801E039AEE00947376 /* Assets.xcassets */; };
 		63B846841E039AEE00947376 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63B846821E039AEE00947376 /* LaunchScreen.storyboard */; };
+		63B8468F1E039C0400947376 /* YJGuideView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63B8468E1E039C0400947376 /* YJGuideView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,8 @@
 		63B846801E039AEE00947376 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		63B846831E039AEE00947376 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		63B846851E039AEE00947376 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		63B8468D1E039C0400947376 /* YJGuideView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YJGuideView.h; sourceTree = "<group>"; };
+		63B8468E1E039C0400947376 /* YJGuideView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YJGuideView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +61,7 @@
 		63B846731E039AEE00947376 /* YJGuideView */ = {
 			isa = PBXGroup;
 			children = (
+				63B8468B1E039BE900947376 /* YJGuideView */,
 				63B846771E039AEE00947376 /* AppDelegate.h */,
 				63B846781E039AEE00947376 /* AppDelegate.m */,
 				63B8467A1E039AEE00947376 /* ViewController.h */,
@@ -77,6 +81,23 @@
 				63B846751E039AEE00947376 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		63B8468B1E039BE900947376 /* YJGuideView */ = {
+			isa = PBXGroup;
+			children = (
+				63B8468C1E039BE900947376 /* Resource */,
+				63B8468D1E039C0400947376 /* YJGuideView.h */,
+				63B8468E1E039C0400947376 /* YJGuideView.m */,
+			);
+			path = YJGuideView;
+			sourceTree = "<group>";
+		};
+		63B8468C1E039BE900947376 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resource;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -151,6 +172,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63B8468F1E039C0400947376 /* YJGuideView.m in Sources */,
 				63B8467C1E039AEE00947376 /* ViewController.m in Sources */,
 				63B846791E039AEE00947376 /* AppDelegate.m in Sources */,
 				63B846761E039AEE00947376 /* main.m in Sources */,
