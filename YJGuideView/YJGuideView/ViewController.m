@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "YJGuideView.h"
 
 @interface ViewController ()
 
@@ -16,6 +17,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    YJGuideView *view = [[YJGuideView alloc] init];
+    
+    CGRect frame = CGRectMake(100, 100, 100, 100);
+    UILabel *labelInit = [[UILabel alloc] initWithFrame:[view _ovalFrameScale:frame ratio:0.5]];
+    labelInit.font = [UIFont systemFontOfSize:15];
+    labelInit.textAlignment = NSTextAlignmentLeft;
+    labelInit.backgroundColor = [UIColor redColor];
+    [self.view addSubview:labelInit];
     
     
 }
