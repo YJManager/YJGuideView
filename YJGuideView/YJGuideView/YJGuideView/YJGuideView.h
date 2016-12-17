@@ -25,4 +25,6 @@ typedef NS_ENUM(NSInteger, YJGuideViewAnchorType) {
 
 -(CGFloat)ovalDrawScale;
 
+-(CGRect)_scaleFrame:(CGRect)rect ratio:(CGFloat)ratio;
+
 @end

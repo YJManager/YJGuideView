@@ -297,6 +297,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 33JZ8ZWGJN;
 				INFOPLIST_FILE = YJGuideView/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -310,6 +311,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 33JZ8ZWGJN;
 				INFOPLIST_FILE = YJGuideView/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -338,6 +340,7 @@
 				63B8468A1E039AEE00947376 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

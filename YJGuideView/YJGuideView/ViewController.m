@@ -22,7 +22,7 @@
     
     
     
-    CGRect frame = CGRectMake(100, 100, 100, 100);
+    CGRect frame = CGRectMake(100, 100, 1, 1);
     view.showRect = frame;
     
     NSLog(@"++++ %f", [view ovalDrawScale]);
