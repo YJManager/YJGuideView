@@ -24,41 +24,32 @@
 
 @implementation YJGuideView
 
--(void)setShowRect:(CGRect)showRect
-{
-    _showRect = showRect;
-    [self setNeedsDisplay];
-}
-
-- (void)setMarkShow:(BOOL)markShow{
-    _markShow = markShow;
-    [self setNeedsDisplay];
-}
-
--(void)setFullShow:(BOOL)fullShow
-{
-    _fullShow = fullShow;
-    [self setNeedsDisplay];
-}
-
-- (void)setGuideBgColor:(UIColor *)guideBgColor{
-    _guideBgColor = guideBgColor;
-    [self setNeedsDisplay];
-}
-
-- (void)setMarkString:(NSString *)markString{
-    _markString = [markString copy];
-    self.markTextView.text = _markString;
-    [self setNeedsDisplay];
-}
-
-- (void)setShowType:(YJGuideViewAnchorType)showType{
-    _showType = showType;
-    [self setNeedsDisplay];
+- (instancetype)initWithFrame:(CGRect)frame{
+    self = [super initWithFrame:frame];
+    if (self){
+        self.showRect = self.bounds;
+        self.fullShow = YES;
+        self.guideBgColor = [UIColor colorWithRed: 0.0 green: 0.0 blue: 0.0 alpha: 0.68];
+        self.isClean = NO;
+        self.markString = @"Description";
+        self.markShow = YES;
+        self.showType = YJGuideViewAnchorRect;
+        self.markImageView = [[UIImageView alloc]initWithImage:UP_ARROW_IMAGE];
+        [self.markImageView setFrame:CGRectMake(0, 0, 70, 70)];
+        [self.markImageView setContentMode:UIViewContentModeScaleAspectFit];
+        self.markTextView = [[UITextView alloc]initWithFrame:CGRectZero];
+        [self.markTextView setEditable:NO];
+        [self.markTextView setTextColor:[UIColor whiteColor]];
+        [self.markTextView setFont:[UIFont systemFontOfSize:16.0f]];
+        [self.markTextView setScrollEnabled:NO];
+        [self.markTextView setText:self.markString];
+        [self.markTextView setBackgroundColor:[UIColor clearColor]];
+    }
+    return self;
 }
 
 - (void)drawRect:(CGRect)rect{
-    // Drawing code
+    
     CGContextRef context = UIGraphicsGetCurrentContext();
     
     if (self.isClean){
@@ -70,19 +61,19 @@
         self.isClean = NO;
         [self performSelector:@selector(setNeedsDisplay) withObject:nil afterDelay:0.12f];
     }else{
+        // 1. 获取
         CGRect frame = [self convertRect:self.bounds toView: self.superview];
         UIImage *fullImage = [self _getImageFromView:self.superview];
         CGFloat scale = UIScreen.mainScreen.scale;
         UIImage *image = [self _getImageFromImage:fullImage rect:CGRectMake(frame.origin.x*scale, frame.origin.y*scale, frame.size.width*scale, frame.size.height*scale)];
         [image drawInRect:self.bounds];
+        
         CGContextSetFillColorWithColor(context, self.guideBgColor.CGColor);
         UIBezierPath *fullPath  = [UIBezierPath bezierPathWithRect:self.bounds];
-        switch (self.showType)
-        {
-            case YJGuideViewAnchorOval:
-            {
+        switch (self.showType){
+            case YJGuideViewAnchorOval:{
                 UIBezierPath *showPath = [UIBezierPath bezierPathWithOvalInRect:self.fullShow?([self _scaleFrame:self.showRect ratio:[self ovalDrawScale]]):self.showRect];
-                [fullPath appendPath:[showPath bezierPathByReversingPath]];
+//                [fullPath appendPath:[showPath bezierPathByReversingPath]];
             }
                 break;
             case YJGuideViewAnchorRoundRect:
@@ -111,25 +102,19 @@
         self.isClean = YES;
     }
 }
--(void)drawMark
-{
+-(void)drawMark{
     CGRect showLocationRect = self.showRect;
-    if (self.fullShow)
-    {
-        switch (self.showType)
-        {
-            case YJGuideViewAnchorOval:
-            {
+    if (self.fullShow){
+        switch (self.showType){
+            case YJGuideViewAnchorOval:{
                 showLocationRect = [self _scaleFrame:self.showRect ratio:[self ovalDrawScale]];
             }
                 break;
-            case YJGuideViewAnchorRoundRect:
-            {
+            case YJGuideViewAnchorRoundRect:{
                 showLocationRect = [self scaleFrame:self.showRect addBorderWidth:DEFAULT_CONRNERRADIUS];
             }
                 break;
-            default:
-            {
+            default:{
                 showLocationRect = [self scaleFrame:self.showRect addBorderWidth:2];
             }
                 break;
@@ -256,43 +241,38 @@
         }
     }
 }
--(instancetype)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self)
-    {
-        self.showRect = self.bounds;
-        self.fullShow = YES;
-        self.guideBgColor = [UIColor colorWithRed: 0.0 green: 0.0 blue: 0.0 alpha: 0.68];
-        self.isClean = NO;
-        self.markShow = YES;
-        self.markString = @"说明性文字";
-        self.showType = YJGuideViewAnchorOval;
-        self.markImageView = [[UIImageView alloc]initWithImage:UP_ARROW_IMAGE];
-        [self.markImageView setFrame:CGRectMake(0, 0, 70, 70)];
-        [self.markImageView setContentMode:UIViewContentModeScaleAspectFit];
-        self.markTextView = [[UITextView alloc]initWithFrame:CGRectZero];
-        [self.markTextView setEditable:NO];
-        [self.markTextView setTextColor:[UIColor whiteColor]];
-        [self.markTextView setFont:[UIFont systemFontOfSize:16.0f]];
-        [self.markTextView setScrollEnabled:NO];
-        [self.markTextView setText:self.markString];
-        [self.markTextView setBackgroundColor:[UIColor clearColor]];
-    }
-    return self;
-}
-
-
--(CGFloat)ovalDrawScale
-{
-    CGFloat max = MAX(self.showRect.size.width, self.showRect.size.height);
-    CGFloat min = MIN(self.showRect.size.width, self.showRect.size.height);
-    CGFloat bigger = (min + sqrt(4.0 * max * max + min * min) - 2 * max)/2.0;
-    CGFloat scale = 1.0 + bigger / max;
-    return scale;
-}
 
 #pragma mark - Lazy
+-(void)setShowRect:(CGRect)showRect{
+    _showRect = showRect;
+    [self setNeedsDisplay];
+}
+
+- (void)setMarkShow:(BOOL)markShow{
+    _markShow = markShow;
+    [self setNeedsDisplay];
+}
+
+-(void)setFullShow:(BOOL)fullShow{
+    _fullShow = fullShow;
+    [self setNeedsDisplay];
+}
+
+- (void)setGuideBgColor:(UIColor *)guideBgColor{
+    _guideBgColor = guideBgColor;
+    [self setNeedsDisplay];
+}
+
+- (void)setMarkString:(NSString *)markString{
+    _markString = [markString copy];
+    self.markTextView.text = _markString;
+    [self setNeedsDisplay];
+}
+
+- (void)setShowType:(YJGuideViewAnchorType)showType{
+    _showType = showType;
+    [self setNeedsDisplay];
+}
 
 #pragma mark - Setting_Support
 /** 从view截取生成Image */
@@ -304,7 +284,7 @@
     return image;
 }
 
-/** 图中裁图 */
+/** 生成新尺寸的image */
 - (UIImage *)_getImageFromImage:(UIImage *)image rect:(CGRect)rect{
     CGImageRef sourceImageRef = image.CGImage;
     CGImageRef newImageRef = CGImageCreateWithImageInRect(sourceImageRef, rect);
@@ -333,6 +313,17 @@
     
     return newRect;
 }
+
+/** 椭圆的外切矩形是内切矩形的多少倍 */
+-(CGFloat)ovalDrawScale{
+    CGFloat max = MAX(self.showRect.size.width, self.showRect.size.height);
+    CGFloat min = MIN(self.showRect.size.width, self.showRect.size.height);
+    CGFloat bigger = (min + sqrt(4.0 * max * max + min * min) - 2 * max)/2.0;
+    CGFloat scale = 1.0 + bigger / max;
+    NSLog(@"-=== %f", scale);
+    return sqrt(2); //scale;
+}
+
 
 
 
