@@ -10,9 +10,10 @@
 #import "YJGuideView.h"
 #import <CoreText/CoreText.h>
 #import <CoreImage/CoreImage.h>
+#import "YJGuideViewController.h"
 
 
-@interface ViewController (){
+@interface ViewController () {
     YJGuideView *markView;
 }
 
@@ -72,7 +73,25 @@
 //    CGPoint point = [[touches anyObject] locationInView:markView.superview];
 //    markView.showRect = CGRectMake(point.x-markView.showRect.size.width/2.0f, point.y-markView.showRect.size.height/2.0f, markView.showRect.size.width, markView.showRect.size.height);
     [markView removeFromSuperview];
+    
+    CGRect frame = CGRectMake(270, 240, 58, 58);
+    YJGuideViewController *guidevc = [[YJGuideViewController alloc] init];
+    guidevc.screenshotImage = [self _getImageFromView:[UIApplication sharedApplication].keyWindow];
+    guidevc.showRects = @[[NSValue valueWithCGRect:frame]];
+    [self presentViewController:guidevc animated:NO completion:^{
+        
+    }];
 }
+
+/** 从view截取生成Image */
+- (UIImage *)_getImageFromView:(UIView *)view{
+    UIGraphicsBeginImageContextWithOptions(view.bounds.size, view.opaque, 0.0);
+    [view.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+}
+
 
 
 @end

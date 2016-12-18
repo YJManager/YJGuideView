@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		63A1AEF51E06B11B00936613 /* IMG_4829.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 63A1AEF41E06B11B00936613 /* IMG_4829.PNG */; };
+		63A1AF221E06B5B100936613 /* YJGuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63A1AF211E06B5B100936613 /* YJGuideViewController.m */; };
+		63A1AF251E06B71400936613 /* YJGuideViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 63A1AF241E06B71400936613 /* YJGuideViewManager.m */; };
 		63B846761E039AEE00947376 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 63B846751E039AEE00947376 /* main.m */; };
 		63B846791E039AEE00947376 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 63B846781E039AEE00947376 /* AppDelegate.m */; };
 		63B8467C1E039AEE00947376 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63B8467B1E039AEE00947376 /* ViewController.m */; };
@@ -20,6 +22,10 @@
 
 /* Begin PBXFileReference section */
 		63A1AEF41E06B11B00936613 /* IMG_4829.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IMG_4829.PNG; sourceTree = "<group>"; };
+		63A1AF201E06B5B100936613 /* YJGuideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YJGuideViewController.h; sourceTree = "<group>"; };
+		63A1AF211E06B5B100936613 /* YJGuideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YJGuideViewController.m; sourceTree = "<group>"; };
+		63A1AF231E06B71400936613 /* YJGuideViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YJGuideViewManager.h; sourceTree = "<group>"; };
+		63A1AF241E06B71400936613 /* YJGuideViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YJGuideViewManager.m; sourceTree = "<group>"; };
 		63B846711E039AEE00947376 /* YJGuideView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YJGuideView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63B846751E039AEE00947376 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		63B846771E039AEE00947376 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -54,6 +60,17 @@
 			path = Resource;
 			sourceTree = "<group>";
 		};
+		63A1AF1C1E06B4DA00936613 /* YJGuideViewManager */ = {
+			isa = PBXGroup;
+			children = (
+				63A1AF201E06B5B100936613 /* YJGuideViewController.h */,
+				63A1AF211E06B5B100936613 /* YJGuideViewController.m */,
+				63A1AF231E06B71400936613 /* YJGuideViewManager.h */,
+				63A1AF241E06B71400936613 /* YJGuideViewManager.m */,
+			);
+			path = YJGuideViewManager;
+			sourceTree = "<group>";
+		};
 		63B846681E039AEE00947376 = {
 			isa = PBXGroup;
 			children = (
@@ -73,6 +90,7 @@
 		63B846731E039AEE00947376 /* YJGuideView */ = {
 			isa = PBXGroup;
 			children = (
+				63A1AF1C1E06B4DA00936613 /* YJGuideViewManager */,
 				63B8468B1E039BE900947376 /* YJGuideView */,
 				63B846771E039AEE00947376 /* AppDelegate.h */,
 				63B846781E039AEE00947376 /* AppDelegate.m */,
@@ -183,6 +201,8 @@
 				63B8468F1E039C0400947376 /* YJGuideView.m in Sources */,
 				63B8467C1E039AEE00947376 /* ViewController.m in Sources */,
 				63B846791E039AEE00947376 /* AppDelegate.m in Sources */,
+				63A1AF221E06B5B100936613 /* YJGuideViewController.m in Sources */,
+				63A1AF251E06B71400936613 /* YJGuideViewManager.m in Sources */,
 				63B846761E039AEE00947376 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -9,6 +9,7 @@
 #import "YJGuideView.h"
 #import <CoreText/CoreText.h>
 #import <CoreImage/CoreImage.h>
+#import <QuartzCore/QuartzCore.h>
 
 #define UP_ARROW_IMAGE ([UIImage imageNamed:@"fx_my_attention_guide_arrow"])
 #define DOWN_ARROW_IMAGE ([UIImage imageNamed:@"fx_guide_arrow_down"])
