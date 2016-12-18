@@ -26,6 +26,7 @@
 - (instancetype)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if (self){
+        self.backgroundColor = [UIColor clearColor];
         self.showRect = self.bounds;
         self.fullShow = YES;
         self.guideBgColor = [UIColor colorWithRed: 0.0 green: 0.0 blue: 0.0 alpha: 0.68];
@@ -51,7 +52,7 @@
         UIImage *fullImage = [self _getImageFromView:self.superview];
         CGFloat scale = UIScreen.mainScreen.scale;
         UIImage *image = [self _getImageFromImage:fullImage rect:CGRectMake(frame.origin.x*scale, frame.origin.y*scale, frame.size.width*scale, frame.size.height*scale)];
-        [image drawInRect:self.bounds];
+//        [image drawInRect:self.bounds];
         
         CGContextSetFillColorWithColor(context, self.guideBgColor.CGColor);
         UIBezierPath *fullPath  = [UIBezierPath bezierPathWithRect:self.bounds];
@@ -165,11 +166,6 @@
 
 /** 椭圆的外切矩形是内切矩形的多少倍 */
 -(CGFloat)ovalDrawScale{
-    CGFloat max = MAX(self.showRect.size.width, self.showRect.size.height);
-    CGFloat min = MIN(self.showRect.size.width, self.showRect.size.height);
-    CGFloat bigger = (min + sqrt(4.0 * max * max + min * min) - 2 * max)/2.0;
-    CGFloat scale = 1.0 + bigger / max;
-    NSLog(@"-=== %f", scale);
     return sqrt(2); //scale;
 }
 

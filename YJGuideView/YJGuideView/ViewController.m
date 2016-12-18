@@ -58,6 +58,14 @@
     [imageView setImage:[UIImage imageNamed:@"IMG_4829.PNG"]];
     [self.view addSubview:imageView];
     
+    
+    UILabel *labelInit = [[UILabel alloc] initWithFrame:CGRectMake(60, 260, 30, 60)];
+    labelInit.font = [UIFont systemFontOfSize:15];
+    labelInit.textAlignment = NSTextAlignmentLeft;
+    labelInit.backgroundColor = [UIColor redColor];
+    [self.view addSubview:labelInit];
+
+    
     CGRect frame = CGRectMake(270, 240, 58, 58);
     
     markView = [[YJGuideView alloc]initWithFrame:imageView.bounds];
@@ -74,12 +82,16 @@
 //    markView.showRect = CGRectMake(point.x-markView.showRect.size.width/2.0f, point.y-markView.showRect.size.height/2.0f, markView.showRect.size.width, markView.showRect.size.height);
     [markView removeFromSuperview];
     
-    CGRect frame = CGRectMake(270, 240, 58, 58);
+    CGRect frame1 = CGRectMake(270, 240, 58, 58);
+    CGRect frame2 = CGRectMake(50, 260, 58, 58);
+    CGRect frame3 = CGRectMake(200, 64, 58, 58);
+
     YJGuideViewController *guidevc = [[YJGuideViewController alloc] init];
     guidevc.screenshotImage = [self _getImageFromView:[UIApplication sharedApplication].keyWindow];
-    guidevc.showRects = @[[NSValue valueWithCGRect:frame]];
+    guidevc.showRects = @[[NSValue valueWithCGRect:frame1], [NSValue valueWithCGRect:frame2], [NSValue valueWithCGRect:frame3]];
+    guidevc.showTypes = @[@0, @1, @2];
     [self presentViewController:guidevc animated:NO completion:^{
-        
+        NSLog(@"已经弹出了guide --- 出现");
     }];
 }
 

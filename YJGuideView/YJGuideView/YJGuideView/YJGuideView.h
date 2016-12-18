@@ -20,7 +20,5 @@
 @property (nonatomic, strong) NSArray *showRects; /**< 显示的Position */
 @property (nonatomic, strong) NSArray *showRadius; /**< 显示的圆角 */
 
-- (id)initWithFrame:(CGRect)frame forViews:(NSArray*)viewArray;
-- (id)initWithFrame:(CGRect)frame withRects:(NSArray*)rectArray;
 
 @end

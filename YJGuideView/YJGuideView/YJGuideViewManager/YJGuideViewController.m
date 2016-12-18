@@ -7,13 +7,13 @@
 //
 
 #import "YJGuideViewController.h"
-#import "YJGuideViewManager.h"
+#import "YJGuideView.h"
 
-@interface YJGuideViewController () <XSpotDelegate>
+@interface YJGuideViewController ()
 
 @property (nonatomic, assign) NSInteger currentIndex; /**< 当前显示位置 */
-@property (nonatomic, strong) YJGuideViewManager *guideManager;
 @property (nonatomic, strong) UIView *showView; /**< 显示样式 */
+@property (nonatomic, strong) UIColor *guideBgColor; /**< 覆盖的颜色 */
 
 @end
 
@@ -32,57 +32,39 @@
     self.view.backgroundColor = [UIColor clearColor];
     self.currentIndex = 0;
     [self _drawScreenshotImageInSelfView];
-    
+    self.guideBgColor = [UIColor colorWithRed: 0.0 green: 0.0 blue: 0.0 alpha: 0.68];
+    [self show];
 }
 
 #pragma mark - Lazy
-- (YJGuideViewManager *)guideManager{
-    if (_guideManager == nil) {
-        _guideManager = [[YJGuideViewManager alloc] init];
-        _guideManager.hintDelegate = self;
-    }
-    return _guideManager;
-}
-
 - (void)viewTapActionClick:(UITapGestureRecognizer *)tapGest{
     self.currentIndex++;
     if (self.currentIndex >= self.showRects.count) {
         [self dismissViewControllerAnimated:NO completion:^{
-            
+            NSLog(@"已经消失了guide --- 消失");
         }];
     }else{
+        
         if (self.showView.superview) {
             [self.showView removeFromSuperview];
+            self.showView = nil;
             [self show];
         }
     }
 }
 
 - (void)show{
-    self.showView = [self.guideManager presentModalMessage:@"你猜猜" where:self.view];
+    CGRect showFrame = [self.showRects objectAtIndex:self.currentIndex].CGRectValue;
+    NSNumber *showType = [self.showTypes objectAtIndex:self.currentIndex];
+    self.showView = [self _showViewWithShowRect:showFrame showType:showType];
     [self.view addSubview:self.showView];
     
     UITapGestureRecognizer *tapGest = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTapActionClick:)];
     [self.showView addGestureRecognizer:tapGest];
 }
 
-#pragma mark - Delegate
--(NSArray*)hintStateRectsToHint:(id)hintState{
-    NSArray* rectArray = nil;
-    NSValue *value = [self.showRects objectAtIndex:self.currentIndex];
-    CGRect rect = value.CGRectValue;
-    rectArray = [[NSArray alloc] initWithObjects:[NSValue valueWithCGRect:rect], nil];
-    return rectArray;
-}
--(void)hintStateWillClose:(id)hintState{
-    NSLog(@" hintStateWillClose : %@",hintState);
-}
--(void)hintStateDidClose:(id)hintState{
-    NSLog(@" hintStateDidClose : %@",hintState);
-}
-
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-
+    
 }
 
 - (void)_drawScreenshotImageInSelfView{
@@ -99,6 +81,22 @@
     UIImage* newImage = [UIImage imageWithCGImage:newImageRef];
     CFRelease(newImageRef);
     return newImage;
+}
+
+- (UIView *)_showViewWithShowRect:(CGRect)frame showType:(NSNumber *)showType{
+    
+    YJGuideView *guideView = [[YJGuideView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    guideView.fullShow = YES;
+    if (showType.integerValue == YJGuideViewAnchorRect) {
+        guideView.showType = YJGuideViewAnchorRect;
+    }else if (showType.integerValue == YJGuideViewAnchorRoundRect){
+        guideView.showType = YJGuideViewAnchorRoundRect;
+    }else if (showType.integerValue == YJGuideViewAnchorOval){
+        guideView.showType = YJGuideViewAnchorOval;
+    }
+    guideView.showRect = frame;
+    
+    return guideView;
 }
 
 
