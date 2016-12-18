@@ -54,10 +54,10 @@
     
     
     UIImageView *imageView = [[UIImageView alloc]initWithFrame:self.view.bounds];
-    [imageView setImage:[UIImage imageNamed:@"meizi.jpg"]];
+    [imageView setImage:[UIImage imageNamed:@"IMG_4829.PNG"]];
     [self.view addSubview:imageView];
     
-    CGRect frame = CGRectMake(210, 380, 120, 50);
+    CGRect frame = CGRectMake(270, 240, 58, 58);
     
     markView = [[YJGuideView alloc]initWithFrame:imageView.bounds];
     markView.fullShow = YES;
@@ -65,26 +65,13 @@
     markView.showRect = frame;
     [imageView addSubview:markView];
     
-    UILabel *firstLabel = [[UILabel alloc] initWithFrame:frame];
-    firstLabel.font = [UIFont systemFontOfSize:15];
-    firstLabel.textAlignment = NSTextAlignmentLeft;
-    firstLabel.backgroundColor = [UIColor redColor];
-//    [imageView addSubview:firstLabel];
-    
-    CGRect secFrame = [markView _scaleFrame:frame ratio:[markView ovalDrawScale]];
-    UILabel *secLabel = [[UILabel alloc] initWithFrame:secFrame];
-    secLabel.font = [UIFont systemFontOfSize:15];
-    secLabel.textAlignment = NSTextAlignmentLeft;
-    secLabel.backgroundColor = [[UIColor greenColor] colorWithAlphaComponent:0.5];
-//    [imageView addSubview:secLabel];
     
     
 }
--(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
-{
-    CGPoint point = [[touches anyObject] locationInView:markView.superview];
-    markView.showRect = CGRectMake(point.x-markView.showRect.size.width/2.0f, point.y-markView.showRect.size.height/2.0f, markView.showRect.size.width, markView.showRect.size.height);
-    markView.markString = NSStringFromCGPoint(point);
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+//    CGPoint point = [[touches anyObject] locationInView:markView.superview];
+//    markView.showRect = CGRectMake(point.x-markView.showRect.size.width/2.0f, point.y-markView.showRect.size.height/2.0f, markView.showRect.size.width, markView.showRect.size.height);
+    [markView removeFromSuperview];
 }
 
 

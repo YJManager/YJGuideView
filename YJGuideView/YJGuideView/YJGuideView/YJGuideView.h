@@ -20,11 +20,5 @@ typedef NS_ENUM(NSInteger, YJGuideViewAnchorType) {
 @property (nonatomic, assign) YJGuideViewAnchorType showType; /**< 锚点显示类型 */
 @property (nonatomic, assign, getter=isFullShow) BOOL fullShow; /**< 锚点全部显示 */
 @property (nonatomic, strong) UIColor *guideBgColor; /**< 覆盖的颜色 */
-@property (nonatomic, assign, getter=isMarkShow) BOOL markShow; /**< 是否显示提示文本，默认不显示 */
-@property (nonatomic, copy) NSString *markString; /**< 提示文本内容 */
-
--(CGFloat)ovalDrawScale;
-
--(CGRect)_scaleFrame:(CGRect)rect ratio:(CGFloat)ratio;
 
 @end
