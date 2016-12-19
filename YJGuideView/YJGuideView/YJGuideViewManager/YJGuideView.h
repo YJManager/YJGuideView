@@ -18,12 +18,9 @@ typedef NS_ENUM(NSInteger, YJGuideViewAnchorType) {
 
 @property (nonatomic, assign) CGRect                  showRect;      /**< 锚点frame */
 @property (nonatomic, assign) YJGuideViewAnchorType   showType;      /**< 锚点显示类型 */
-@property (nonatomic, assign, getter=isFullShow) BOOL fullShow;      /**< 锚点全部显示 */
+@property (nonatomic, assign, getter=isFullShow) BOOL fullShow;      /**< 是否外切 */
 @property (nonatomic, strong) UIColor *               guideBgColor;  /**< 覆盖的颜色 */
-
-/////////////////////////////
-@property (nonatomic, strong) NSArray *showRects; /**< 显示的Position */
-@property (nonatomic, strong) NSArray *showRadius; /**< 显示的圆角 */
+@property (nonatomic, assign) CGFloat roundRectConrnerradius;        /**< 圆角矩形的圆角值 */
 
 
 @end

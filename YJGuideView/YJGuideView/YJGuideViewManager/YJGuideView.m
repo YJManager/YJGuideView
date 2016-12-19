@@ -30,6 +30,7 @@
         self.guideBgColor = [UIColor colorWithRed: 0.0 green: 0.0 blue: 0.0 alpha: 0.68];
         self.isClean = NO;
         self.showType = YJGuideViewAnchorRect;
+        self.roundRectConrnerradius = 5.0f;
     }
     return self;
 }
@@ -46,10 +47,10 @@
         [self performSelector:@selector(setNeedsDisplay) withObject:nil afterDelay:0.12f];
     }else{
         // 1. 获取
-        CGRect frame = [self convertRect:self.bounds toView: self.superview];
-        UIImage *fullImage = [self _getImageFromView:self.superview];
-        CGFloat scale = UIScreen.mainScreen.scale;
-        UIImage *image = [self _getImageFromImage:fullImage rect:CGRectMake(frame.origin.x*scale, frame.origin.y*scale, frame.size.width*scale, frame.size.height*scale)];
+//        CGRect frame = [self convertRect:self.bounds toView: self.superview];
+//        UIImage *fullImage = [self _getImageFromView:self.superview];
+//        CGFloat scale = UIScreen.mainScreen.scale;
+//        UIImage *image = [self _getImageFromImage:fullImage rect:CGRectMake(frame.origin.x*scale, frame.origin.y*scale, frame.size.width*scale, frame.size.height*scale)];
 //        [image drawInRect:self.bounds];
         
         CGContextSetFillColorWithColor(context, self.guideBgColor.CGColor);
@@ -61,7 +62,7 @@
             }
                 break;
             case YJGuideViewAnchorRoundRect:{ // 圆角矩形
-                UIBezierPath *showPath = [UIBezierPath bezierPathWithRoundedRect:self.fullShow?([self scaleFrame:self.showRect addBorderWidth:DEFAULT_CONRNERRADIUS]):self.showRect cornerRadius:DEFAULT_CONRNERRADIUS];
+                UIBezierPath *showPath = [UIBezierPath bezierPathWithRoundedRect:self.fullShow?([self scaleFrame:self.showRect addBorderWidth:self.roundRectConrnerradius]):self.showRect cornerRadius:self.roundRectConrnerradius];
                 [fullPath appendPath:[showPath bezierPathByReversingPath]];
             }
                 break;
@@ -86,7 +87,7 @@
             }
                 break;
             case YJGuideViewAnchorRoundRect:{
-                showLocationRect = [self scaleFrame:self.showRect addBorderWidth:DEFAULT_CONRNERRADIUS];
+                showLocationRect = [self scaleFrame:self.showRect addBorderWidth:self.roundRectConrnerradius];
             }
                 break;
             default:{
@@ -166,9 +167,6 @@
 -(CGFloat)ovalDrawScale{
     return sqrt(2); //scale;
 }
-
-
-
 
 
 @end
