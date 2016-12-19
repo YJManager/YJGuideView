@@ -11,7 +11,6 @@
 
 @interface YJGuideViewController () <YJGuideViewDelegate>
 
-@property (nonatomic, strong) UIImageView *currentScreenImgView; /**< 当前的截屏 */
 @property (nonatomic, assign) NSInteger currentIndex; /**< 当前显示位置 */
 @property (nonatomic, strong) UIView *showView; /**< 显示样式View */
 
@@ -31,7 +30,6 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor clearColor];
     self.currentIndex = 0;
-    [self _drawScreenshotImageInSelfView];
     [self show];
 }
 
@@ -67,10 +65,6 @@
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
 }
 
-- (void)_drawScreenshotImageInSelfView{
-    self.currentScreenImgView.image = self.screenshotImage;
-    [self.view addSubview:self.currentScreenImgView];
-}
 
 #pragma mark - SettingSupport
 - (UIView *)_showViewWithShowRect:(CGRect)frame showType:(NSNumber *)showType fullShow:(NSNumber *)fullShow{
@@ -96,17 +90,15 @@
 }
 
 #pragma mark - Lazy
-- (UIImageView *)currentScreenImgView{
-    if (_currentScreenImgView == nil) {
-        _currentScreenImgView = [[UIImageView alloc] initWithFrame:[UIScreen mainScreen].bounds];
-        _currentScreenImgView.contentMode = UIViewContentModeScaleToFill;
-        _currentScreenImgView.backgroundColor = [UIColor clearColor];
-    }
-    return _currentScreenImgView;
-}
 
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+- (void)dealloc{
+#ifdef DEBUG
+    NSLog(@"YJGuideViewController is dealloc");
+#endif
 }
 @end

@@ -10,8 +10,6 @@
 
 @interface YJGuideViewController : UIViewController
 
-@property (nonatomic, strong) UIImage            *  screenshotImage;  /**< 上一页截屏生成图片 */
-
 // 相关参数设置
 @property (nonatomic, strong) NSArray <NSValue *> * showRects;        /**< 显示的焦点Frame */
 @property (nonatomic, strong) NSArray <NSNumber *>* showTypes;        /**< 显示类型 */

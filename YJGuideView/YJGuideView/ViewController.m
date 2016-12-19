@@ -36,10 +36,9 @@
     
     CGRect frame1 = CGRectMake(270, 240, 58, 58);
     CGRect frame2 = CGRectMake(50, 260, 58, 58);
-    CGRect frame3 = CGRectMake(200, 64, 58, 58);
+    CGRect frame3 = CGRectMake(200, 64, 158, 58);
 
     YJGuideViewController *guidevc = [[YJGuideViewController alloc] init];
-    guidevc.screenshotImage = [self _getImageFromView:[UIApplication sharedApplication].keyWindow];
     guidevc.showRects = @[[NSValue valueWithCGRect:frame1], [NSValue valueWithCGRect:frame2], [NSValue valueWithCGRect:frame3]];
     guidevc.showTypes = @[@0, @1, @2];
     guidevc.endoOutCuts = @[@0, @1, @0];
@@ -48,14 +47,6 @@
     }];
 }
 
-/** 从view截取生成Image */
-- (UIImage *)_getImageFromView:(UIView *)view{
-    UIGraphicsBeginImageContextWithOptions(view.bounds.size, view.opaque, 0.0);
-    [view.layer renderInContext:UIGraphicsGetCurrentContext()];
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return image;
-}
 
 
 
