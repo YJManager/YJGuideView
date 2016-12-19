@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		63A1AEF51E06B11B00936613 /* IMG_4829.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 63A1AEF41E06B11B00936613 /* IMG_4829.PNG */; };
+		634D99681E07778000A39222 /* YJGuideView.m in Sources */ = {isa = PBXBuildFile; fileRef = 634D99671E07778000A39222 /* YJGuideView.m */; };
 		63A1AF221E06B5B100936613 /* YJGuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63A1AF211E06B5B100936613 /* YJGuideViewController.m */; };
 		63B846761E039AEE00947376 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 63B846751E039AEE00947376 /* main.m */; };
 		63B846791E039AEE00947376 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 63B846781E039AEE00947376 /* AppDelegate.m */; };
@@ -15,12 +15,11 @@
 		63B8467F1E039AEE00947376 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63B8467D1E039AEE00947376 /* Main.storyboard */; };
 		63B846811E039AEE00947376 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63B846801E039AEE00947376 /* Assets.xcassets */; };
 		63B846841E039AEE00947376 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63B846821E039AEE00947376 /* LaunchScreen.storyboard */; };
-		63B8468F1E039C0400947376 /* YJGuideView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63B8468E1E039C0400947376 /* YJGuideView.m */; };
-		63B846951E03E36600947376 /* 引导页面.zip in Resources */ = {isa = PBXBuildFile; fileRef = 63B846941E03E36600947376 /* 引导页面.zip */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		63A1AEF41E06B11B00936613 /* IMG_4829.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IMG_4829.PNG; sourceTree = "<group>"; };
+		634D99661E07778000A39222 /* YJGuideView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YJGuideView.h; sourceTree = "<group>"; };
+		634D99671E07778000A39222 /* YJGuideView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YJGuideView.m; sourceTree = "<group>"; };
 		63A1AF201E06B5B100936613 /* YJGuideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YJGuideViewController.h; sourceTree = "<group>"; };
 		63A1AF211E06B5B100936613 /* YJGuideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YJGuideViewController.m; sourceTree = "<group>"; };
 		63B846711E039AEE00947376 /* YJGuideView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YJGuideView.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -33,9 +32,6 @@
 		63B846801E039AEE00947376 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		63B846831E039AEE00947376 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		63B846851E039AEE00947376 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		63B8468D1E039C0400947376 /* YJGuideView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YJGuideView.h; sourceTree = "<group>"; };
-		63B8468E1E039C0400947376 /* YJGuideView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YJGuideView.m; sourceTree = "<group>"; };
-		63B846941E03E36600947376 /* 引导页面.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "引导页面.zip"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,17 +45,11 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		63A1AEEB1E06641700936613 /* Resource */ = {
-			isa = PBXGroup;
-			children = (
-				63A1AEF41E06B11B00936613 /* IMG_4829.PNG */,
-			);
-			path = Resource;
-			sourceTree = "<group>";
-		};
 		63A1AF1C1E06B4DA00936613 /* YJGuideViewManager */ = {
 			isa = PBXGroup;
 			children = (
+				634D99661E07778000A39222 /* YJGuideView.h */,
+				634D99671E07778000A39222 /* YJGuideView.m */,
 				63A1AF201E06B5B100936613 /* YJGuideViewController.h */,
 				63A1AF211E06B5B100936613 /* YJGuideViewController.m */,
 			);
@@ -86,7 +76,6 @@
 			isa = PBXGroup;
 			children = (
 				63A1AF1C1E06B4DA00936613 /* YJGuideViewManager */,
-				63B8468B1E039BE900947376 /* YJGuideView */,
 				63B846771E039AEE00947376 /* AppDelegate.h */,
 				63B846781E039AEE00947376 /* AppDelegate.m */,
 				63B8467A1E039AEE00947376 /* ViewController.h */,
@@ -99,7 +88,6 @@
 		63B846741E039AEE00947376 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				63B846941E03E36600947376 /* 引导页面.zip */,
 				63B8467D1E039AEE00947376 /* Main.storyboard */,
 				63B846801E039AEE00947376 /* Assets.xcassets */,
 				63B846821E039AEE00947376 /* LaunchScreen.storyboard */,
@@ -107,16 +95,6 @@
 				63B846751E039AEE00947376 /* main.m */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		63B8468B1E039BE900947376 /* YJGuideView */ = {
-			isa = PBXGroup;
-			children = (
-				63A1AEEB1E06641700936613 /* Resource */,
-				63B8468D1E039C0400947376 /* YJGuideView.h */,
-				63B8468E1E039C0400947376 /* YJGuideView.m */,
-			);
-			path = YJGuideView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -179,8 +157,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				63B846841E039AEE00947376 /* LaunchScreen.storyboard in Resources */,
-				63B846951E03E36600947376 /* 引导页面.zip in Resources */,
-				63A1AEF51E06B11B00936613 /* IMG_4829.PNG in Resources */,
 				63B846811E039AEE00947376 /* Assets.xcassets in Resources */,
 				63B8467F1E039AEE00947376 /* Main.storyboard in Resources */,
 			);
@@ -193,8 +169,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				63B8468F1E039C0400947376 /* YJGuideView.m in Sources */,
 				63B8467C1E039AEE00947376 /* ViewController.m in Sources */,
+				634D99681E07778000A39222 /* YJGuideView.m in Sources */,
 				63B846791E039AEE00947376 /* AppDelegate.m in Sources */,
 				63A1AF221E06B5B100936613 /* YJGuideViewController.m in Sources */,
 				63B846761E039AEE00947376 /* main.m in Sources */,
