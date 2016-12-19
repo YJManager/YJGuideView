@@ -75,6 +75,7 @@
         CGContextAddPath(context, fullPath.CGPath);
         CGContextFillPath(context);
 //        CGContextStrokePath(context);
+        [self drawMark];
         self.isClean = YES;
     }
 }
@@ -96,9 +97,10 @@
                 break;
         }
     }
-    CGPoint showCenter = CGPointMake(CGRectGetMinX(showLocationRect), CGRectGetMinY(showLocationRect));
-    NSLog(@"-%@", NSStringFromCGPoint(showCenter));
     
+    if (self.delegate && [self.delegate respondsToSelector:@selector(yjGuideView:currentShowRect:)]) {
+        [self.delegate yjGuideView:self currentShowRect:showLocationRect];
+    }
 }
 
 #pragma mark - Lazy

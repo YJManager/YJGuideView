@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+@class YJGuideView;
+@protocol YJGuideViewDelegate <NSObject>
+
+- (void)yjGuideView:(YJGuideView *)guideView currentShowRect:(CGRect)showRect;
+
+@end
+
 typedef NS_ENUM(NSInteger, YJGuideViewAnchorType) {
     YJGuideViewAnchorRect,        //矩形
     YJGuideViewAnchorRoundRect,  // 圆角矩形
@@ -22,5 +29,6 @@ typedef NS_ENUM(NSInteger, YJGuideViewAnchorType) {
 @property (nonatomic, strong) UIColor *               guideBgColor;  /**< 覆盖的颜色 */
 @property (nonatomic, assign) CGFloat roundRectConrnerradius;        /**< 圆角矩形的圆角值 */
 
+@property (nonatomic, weak) id<YJGuideViewDelegate>  delegate;
 
 @end
