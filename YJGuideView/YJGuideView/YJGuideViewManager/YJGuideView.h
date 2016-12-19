@@ -7,14 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "YJGuideViewController.h"
+
+typedef NS_ENUM(NSInteger, YJGuideViewAnchorType) {
+    YJGuideViewAnchorRect,        //矩形
+    YJGuideViewAnchorRoundRect,  // 圆角矩形
+    YJGuideViewAnchorOval        //椭圆
+};
 
 @interface YJGuideView : UIView
 
-@property (nonatomic, assign) CGRect showRect; /**< 锚点frame */
-@property (nonatomic, assign) YJGuideViewAnchorType showType; /**< 锚点显示类型 */
-@property (nonatomic, assign, getter=isFullShow) BOOL fullShow; /**< 锚点全部显示 */
-@property (nonatomic, strong) UIColor *guideBgColor; /**< 覆盖的颜色 */
+@property (nonatomic, assign) CGRect                  showRect;      /**< 锚点frame */
+@property (nonatomic, assign) YJGuideViewAnchorType   showType;      /**< 锚点显示类型 */
+@property (nonatomic, assign, getter=isFullShow) BOOL fullShow;      /**< 锚点全部显示 */
+@property (nonatomic, strong) UIColor *               guideBgColor;  /**< 覆盖的颜色 */
 
 /////////////////////////////
 @property (nonatomic, strong) NSArray *showRects; /**< 显示的Position */

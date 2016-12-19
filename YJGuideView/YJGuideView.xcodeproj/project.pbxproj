@@ -48,10 +48,10 @@
 		63A1AF1C1E06B4DA00936613 /* YJGuideViewManager */ = {
 			isa = PBXGroup;
 			children = (
-				634D99661E07778000A39222 /* YJGuideView.h */,
-				634D99671E07778000A39222 /* YJGuideView.m */,
 				63A1AF201E06B5B100936613 /* YJGuideViewController.h */,
 				63A1AF211E06B5B100936613 /* YJGuideViewController.m */,
+				634D99661E07778000A39222 /* YJGuideView.h */,
+				634D99671E07778000A39222 /* YJGuideView.m */,
 			);
 			path = YJGuideViewManager;
 			sourceTree = "<group>";

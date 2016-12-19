@@ -11,9 +11,9 @@
 
 @interface YJGuideViewController ()
 
+@property (nonatomic, strong) UIImageView *currentScreenImgView; /**< 当前的截屏 */
 @property (nonatomic, assign) NSInteger currentIndex; /**< 当前显示位置 */
-@property (nonatomic, strong) UIView *showView; /**< 显示样式 */
-@property (nonatomic, strong) UIColor *guideBgColor; /**< 覆盖的颜色 */
+@property (nonatomic, strong) UIView *showView; /**< 显示样式View */
 
 @end
 
@@ -32,16 +32,27 @@
     self.view.backgroundColor = [UIColor clearColor];
     self.currentIndex = 0;
     [self _drawScreenshotImageInSelfView];
-    self.guideBgColor = [UIColor colorWithRed: 0.0 green: 0.0 blue: 0.0 alpha: 0.68];
     [self show];
 }
 
-#pragma mark - Lazy
+- (void)show{
+    CGRect showFrame = [self.showRects objectAtIndex:self.currentIndex].CGRectValue;
+    NSNumber *showType = [self.showTypes objectAtIndex:self.currentIndex];
+    NSNumber *fullShow = [self.endoOutCuts objectAtIndex:self.currentIndex];
+    self.showView = [self _showViewWithShowRect:showFrame showType:showType fullShow:fullShow];
+    [self.view addSubview:self.showView];
+    
+    UITapGestureRecognizer *tapGest = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTapActionClick:)];
+    [self.showView addGestureRecognizer:tapGest];
+}
+
 - (void)viewTapActionClick:(UITapGestureRecognizer *)tapGest{
     self.currentIndex++;
     if (self.currentIndex >= self.showRects.count) {
         [self dismissViewControllerAnimated:NO completion:^{
-            NSLog(@"已经消失了guide --- 消失");
+#ifdef DEBUG
+            NSLog(@"YJGuideViewController -- Already disappeared");
+#endif
         }];
     }else{
         
@@ -53,40 +64,19 @@
     }
 }
 
-- (void)show{
-    CGRect showFrame = [self.showRects objectAtIndex:self.currentIndex].CGRectValue;
-    NSNumber *showType = [self.showTypes objectAtIndex:self.currentIndex];
-    self.showView = [self _showViewWithShowRect:showFrame showType:showType];
-    [self.view addSubview:self.showView];
-    
-    UITapGestureRecognizer *tapGest = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTapActionClick:)];
-    [self.showView addGestureRecognizer:tapGest];
-}
-
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-    
 }
 
 - (void)_drawScreenshotImageInSelfView{
-    CGFloat scale = UIScreen.mainScreen.scale;
-    UIImage *image = [self _getImageFromImage:self.screenshotImage rect:CGRectMake(0, 0, self.view.bounds.size.width * scale, self.view.bounds.size.height * scale)];
-    [image drawInRect:self.view.bounds];
+    self.currentScreenImgView.image = self.screenshotImage;
+    [self.view addSubview:self.currentScreenImgView];
 }
 
 #pragma mark - SettingSupport
-/** 生成新尺寸的image */
-- (UIImage *)_getImageFromImage:(UIImage *)image rect:(CGRect)rect{
-    CGImageRef sourceImageRef = image.CGImage;
-    CGImageRef newImageRef = CGImageCreateWithImageInRect(sourceImageRef, rect);
-    UIImage* newImage = [UIImage imageWithCGImage:newImageRef];
-    CFRelease(newImageRef);
-    return newImage;
-}
-
-- (UIView *)_showViewWithShowRect:(CGRect)frame showType:(NSNumber *)showType{
+- (UIView *)_showViewWithShowRect:(CGRect)frame showType:(NSNumber *)showType fullShow:(NSNumber *)fullShow{
     
     YJGuideView *guideView = [[YJGuideView alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    guideView.fullShow = YES;
+    guideView.fullShow = fullShow.boolValue;
     if (showType.integerValue == YJGuideViewAnchorRect) {
         guideView.showType = YJGuideViewAnchorRect;
     }else if (showType.integerValue == YJGuideViewAnchorRoundRect){
@@ -97,6 +87,16 @@
     guideView.showRect = frame;
     
     return guideView;
+}
+
+#pragma mark - Lazy
+- (UIImageView *)currentScreenImgView{
+    if (_currentScreenImgView == nil) {
+        _currentScreenImgView = [[UIImageView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+        _currentScreenImgView.contentMode = UIViewContentModeScaleToFill;
+        _currentScreenImgView.backgroundColor = [UIColor clearColor];
+    }
+    return _currentScreenImgView;
 }
 
 

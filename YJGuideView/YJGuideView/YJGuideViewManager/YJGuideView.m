@@ -11,8 +11,6 @@
 #import <CoreImage/CoreImage.h>
 #import <QuartzCore/QuartzCore.h>
 
-#define UP_ARROW_IMAGE ([UIImage imageNamed:@"fx_my_attention_guide_arrow"])
-#define DOWN_ARROW_IMAGE ([UIImage imageNamed:@"fx_guide_arrow_down"])
 #define DEFAULT_CONRNERRADIUS (5.0f)
 
 @interface YJGuideView ()

@@ -42,6 +42,7 @@
     guidevc.screenshotImage = [self _getImageFromView:[UIApplication sharedApplication].keyWindow];
     guidevc.showRects = @[[NSValue valueWithCGRect:frame1], [NSValue valueWithCGRect:frame2], [NSValue valueWithCGRect:frame3]];
     guidevc.showTypes = @[@0, @1, @2];
+    guidevc.endoOutCuts = @[@0, @1, @0];
     [self presentViewController:guidevc animated:NO completion:^{
         NSLog(@"已经弹出了guide --- 出现");
     }];
