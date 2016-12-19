@@ -13,6 +13,7 @@
 
 @property (nonatomic, assign) NSInteger currentIndex; /**< 当前显示位置 */
 @property (nonatomic, strong) UIView *showView; /**< 显示样式View */
+@property (nonatomic, strong) UIImageView *markImageView; /**< 提示视图 */
 
 @end
 
@@ -37,7 +38,8 @@
     CGRect showFrame = [self.showRects objectAtIndex:self.currentIndex].CGRectValue;
     NSNumber *showType = [self.showTypes objectAtIndex:self.currentIndex];
     NSNumber *fullShow = [self.endoOutCuts objectAtIndex:self.currentIndex];
-    self.showView = [self _showViewWithShowRect:showFrame showType:showType fullShow:fullShow];
+    CGFloat roundRectConrnerradius = [self.roundRectConrnerradius objectAtIndex:self.currentIndex].doubleValue;
+    self.showView = [self _showViewWithShowRect:showFrame showType:showType fullShow:fullShow roundRectConrnerradius:roundRectConrnerradius];
     [self.view addSubview:self.showView];
     
     UITapGestureRecognizer *tapGest = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTapActionClick:)];
@@ -48,9 +50,7 @@
     self.currentIndex++;
     if (self.currentIndex >= self.showRects.count) {
         [self dismissViewControllerAnimated:NO completion:^{
-#ifdef DEBUG
-            NSLog(@"YJGuideViewController -- Already disappeared");
-#endif
+
         }];
     }else{
         
@@ -67,7 +67,7 @@
 
 
 #pragma mark - SettingSupport
-- (UIView *)_showViewWithShowRect:(CGRect)frame showType:(NSNumber *)showType fullShow:(NSNumber *)fullShow{
+- (UIView *)_showViewWithShowRect:(CGRect)frame showType:(NSNumber *)showType fullShow:(NSNumber *)fullShow roundRectConrnerradius:(CGFloat)roundRectConrnerradius{
     
     YJGuideView *guideView = [[YJGuideView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     guideView.delegate = self;
@@ -76,6 +76,7 @@
         guideView.showType = YJGuideViewAnchorRect;
     }else if (showType.integerValue == YJGuideViewAnchorRoundRect){
         guideView.showType = YJGuideViewAnchorRoundRect;
+        guideView.roundRectConrnerradius = roundRectConrnerradius;
     }else if (showType.integerValue == YJGuideViewAnchorOval){
         guideView.showType = YJGuideViewAnchorOval;
     }
@@ -86,10 +87,22 @@
 
 #pragma mark - YJGuideViewDelegate
 - (void)yjGuideView:(YJGuideView *)guideView currentShowRect:(CGRect)showRect{
-    NSLog(@"-%@", NSStringFromCGRect(showRect));
+    CGRect markRect = [self.markShowRects objectAtIndex:self.currentIndex].CGRectValue;
+    UIImage *markImage = [self.markShowImages objectAtIndex:self.currentIndex];
+    self.markImageView.frame = markRect;
+    self.markImageView.image = markImage;
+    [self.view bringSubviewToFront:self.markImageView];
 }
 
 #pragma mark - Lazy
+- (UIImageView *)markImageView{
+    if (_markImageView == nil) {
+        _markImageView = [[UIImageView alloc] initWithFrame:CGRectZero];
+        _markImageView.backgroundColor = [UIColor redColor];
+        [self.view addSubview:_markImageView];
+    }
+    return _markImageView;
+}
 
 
 - (void)didReceiveMemoryWarning {
