@@ -11,8 +11,6 @@
 #import <CoreImage/CoreImage.h>
 #import <QuartzCore/QuartzCore.h>
 
-#define DEFAULT_CONRNERRADIUS (5.0f)
-
 @interface YJGuideView ()
 
 @property (nonatomic, assign) BOOL isClean; /**< 是否清除 */

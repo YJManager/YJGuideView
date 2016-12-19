@@ -9,7 +9,7 @@
 #import "YJGuideViewController.h"
 #import "YJGuideView.h"
 
-@interface YJGuideViewController ()
+@interface YJGuideViewController () <YJGuideViewDelegate>
 
 @property (nonatomic, strong) UIImageView *currentScreenImgView; /**< 当前的截屏 */
 @property (nonatomic, assign) NSInteger currentIndex; /**< 当前显示位置 */
@@ -76,6 +76,7 @@
 - (UIView *)_showViewWithShowRect:(CGRect)frame showType:(NSNumber *)showType fullShow:(NSNumber *)fullShow{
     
     YJGuideView *guideView = [[YJGuideView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    guideView.delegate = self;
     guideView.fullShow = fullShow.boolValue;
     if (showType.integerValue == YJGuideViewAnchorRect) {
         guideView.showType = YJGuideViewAnchorRect;
@@ -87,6 +88,11 @@
     guideView.showRect = frame;
     
     return guideView;
+}
+
+#pragma mark - YJGuideViewDelegate
+- (void)yjGuideView:(YJGuideView *)guideView currentShowRect:(CGRect)showRect{
+    NSLog(@"-%@", NSStringFromCGRect(showRect));
 }
 
 #pragma mark - Lazy
