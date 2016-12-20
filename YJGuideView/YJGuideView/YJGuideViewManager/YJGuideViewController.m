@@ -92,13 +92,14 @@
     self.markImageView.frame = markRect;
     self.markImageView.image = markImage;
     [self.view bringSubviewToFront:self.markImageView];
+    
 }
 
 #pragma mark - Lazy
 - (UIImageView *)markImageView{
     if (_markImageView == nil) {
         _markImageView = [[UIImageView alloc] initWithFrame:CGRectZero];
-        _markImageView.backgroundColor = [UIColor redColor];
+        _markImageView.backgroundColor = [[UIColor redColor] colorWithAlphaComponent:0.5];
         [self.view addSubview:_markImageView];
     }
     return _markImageView;
