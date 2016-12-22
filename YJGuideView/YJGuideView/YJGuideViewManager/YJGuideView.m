@@ -25,7 +25,7 @@
         self.backgroundColor = [UIColor clearColor];
         self.showRect = self.bounds;
         self.fullShow = YES;
-        self.guideBgColor = [UIColor colorWithRed: 0.0 green: 0.0 blue: 0.0 alpha: 0.68];
+        self.guideBgColor = [UIColor colorWithRed: 0.0 green: 0.0 blue: 0.0 alpha: 0.75];
         self.isClean = NO;
         self.showType = YJGuideViewAnchorRect;
         self.roundRectConrnerradius = 5.0f;
